@@ -11,9 +11,14 @@
     <title>MyView</title>
 </head>
 <body>
-    <a href ="/Employee/AddNew">Add New</a>
+
+    <div style="text-align:right"> Hello, @Model.UserName
+    <a href="/Authentication/Logout">Logout</a></div>
+    <hr />
+
+    <a href="/Employee/AddNew">Add New</a>
         <div>
-            <table border="1">
+            <table border="1"><span style="font-size: 9pt;"></span>
                 <tr>
                     <th>Employee Name</th>
                     <th>Salary</th>

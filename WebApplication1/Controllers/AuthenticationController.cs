@@ -32,5 +32,14 @@ namespace WebApplication1.Controllers
                 return View("Login");
             }
         }
+
+        public ActionResult Logout()
+        {
+            FormsAuthentication.SignOut();
+            return RedirectToAction("Login");
+        }
+
+
+
     }
 }
