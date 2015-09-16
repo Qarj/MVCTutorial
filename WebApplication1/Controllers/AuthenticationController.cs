@@ -8,6 +8,7 @@ using WebApplication1.Models;
 
 namespace WebApplication1.Controllers
 {
+    [AllowAnonymous]
     public class AuthenticationController : Controller
     {
         // GET: Authentication
