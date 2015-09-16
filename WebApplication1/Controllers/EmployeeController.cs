@@ -22,7 +22,7 @@ namespace WebApplication1.Controllers
             return "Hi, I am not action method";
         }
        
-
+        [Authorize]
         public ActionResult Index()
         {
             EmployeeListViewModel employeeListViewModel = new EmployeeListViewModel();

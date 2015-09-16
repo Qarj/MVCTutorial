@@ -22,5 +22,17 @@ namespace WebApplication1.Models
             return e;
         }
 
+        public bool IsValidUser(UserDetails u)
+        {
+            if (u.UserName == "Admin" && u.Password == "Admin")
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
     }
 }
