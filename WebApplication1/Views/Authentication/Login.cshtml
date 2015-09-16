@@ -18,6 +18,7 @@
         {
             @Html.LabelFor(c=>c.UserName)
             @Html.TextBoxFor(x => x.UserName)
+            @Html.ValidationMessageFor(x => x.UserName)
 
             <br />
             @Html.LabelFor(c => c.Password)
