@@ -12,30 +12,35 @@
 </head>
 <body>
 
-    <div style="text-align:right"> Hello, @Model.UserName
-    <a href="/Authentication/Logout">Logout</a></div>
+    <div style="text-align:right">
+        Hello, @Model.UserName
+        <a href="/Authentication/Logout">Logout</a>
+    </div>
+    <hr />
+    @{
+        Html.RenderAction("GetAddNewLink");
+    }
     <hr />
 
-    <a href="/Employee/AddNew">Add New</a>
-        <div>
-            <table border="1" style="font-size: 9pt;">
-                <tr>
-                    <th>Employee Name</th>
-                    <th>Salary</th>
-                </tr>
-                @foreach (EmployeeViewModel item in Model.Employees)
-                {
-                    <tr>
-                        <td>@item.EmployeeName</td>
-                        <td style="background-color:@item.SalaryColor">@item.Salary</td>
-                    </tr>
-                }
-            </table>
-            @{
-                MvcHtmlString result = Html.Partial("Footer", Model.FooterData);
-                string finalResult = result.ToHtmlString().Replace("2015", "20000");
-            }
-            @MvcHtmlString.Create(finalResult)
-        </div>
+                <div>
+                    <table border="1" style="font-size: 9pt;">
+                        <tr>
+                            <th>Employee Name</th>
+                            <th>Salary</th>
+                        </tr>
+                        @foreach (EmployeeViewModel item in Model.Employees)
+                        {
+                            <tr>
+                                <td>@item.EmployeeName</td>
+                                <td style="background-color:@item.SalaryColor">@item.Salary</td>
+                            </tr>
+                        }
+                    </table>
+                    @{
+                        MvcHtmlString result = Html.Partial("Footer", Model.FooterData);
+                        string finalResult = result.ToHtmlString().Replace("2015", "20000");
+                    }
+                    @MvcHtmlString.Create(finalResult)
+                </div>
 </body>
 </html>

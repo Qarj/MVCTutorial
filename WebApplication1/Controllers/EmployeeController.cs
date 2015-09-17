@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using WebApplication1.Models;
 using WebApplication1.ViewModels;
+using WebApplication1.Filters;
 
 namespace WebApplication1.Controllers
 {
@@ -56,11 +57,13 @@ namespace WebApplication1.Controllers
             return View("Index", employeeListViewModel);
         }
 
+        [AdminFilter]
         public ActionResult AddNew()
         {
             return View("CreateEmployee", new CreateEmployeeViewModel());
         }
 
+        [AdminFilter]
         public ActionResult SaveEmployee(Employee e, string BtnSubmit)
         {
             switch (BtnSubmit)
@@ -93,6 +96,20 @@ namespace WebApplication1.Controllers
             return new EmptyResult();
             
         }
+
+        [ChildActionOnly]
+        public ActionResult GetAddNewLink()
+        {
+            if (Convert.ToBoolean(Session["IsAdmin"]))
+            {
+                return PartialView("AddNewLink");
+            }
+            else
+            {
+                return new EmptyResult();
+            }
+        }
+
 
 
     }
