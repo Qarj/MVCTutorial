@@ -50,6 +50,9 @@ namespace WebApplication1.Controllers
 	        }
             employeeListViewModel.Employees = empViewModels;
             //employeeListViewModel.UserName = "Admin";
+            employeeListViewModel.FooterData = new FooterViewModel();
+            employeeListViewModel.FooterData.CompanyName = "MVC Project"; //Can be set to dyamic value
+            employeeListViewModel.FooterData.Year = DateTime.Now.Year.ToString();
             return View("Index", employeeListViewModel);
         }
 

@@ -31,6 +31,11 @@
                     </tr>
                 }
             </table>
+            @{
+                MvcHtmlString result = Html.Partial("Footer", Model.FooterData);
+                string finalResult = result.ToHtmlString().Replace("2015", "20000");
+            }
+            @MvcHtmlString.Create(finalResult)
         </div>
 </body>
 </html>
