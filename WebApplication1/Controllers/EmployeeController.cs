@@ -60,7 +60,12 @@ namespace WebApplication1.Controllers
         [AdminFilter]
         public ActionResult AddNew()
         {
-            return View("CreateEmployee", new CreateEmployeeViewModel());
+            CreateEmployeeViewModel employeeListViewModel = new CreateEmployeeViewModel();
+            employeeListViewModel.FooterData = new FooterViewModel();
+            employeeListViewModel.FooterData.CompanyName = "MVC Project";//Can be set to dynamic value
+            employeeListViewModel.FooterData.Year = DateTime.Now.Year.ToString();
+            employeeListViewModel.UserName = User.Identity.Name; //New Line
+            return View("CreateEmployee", employeeListViewModel);
         }
 
         [ValidateAntiForgeryToken]
@@ -89,6 +94,10 @@ namespace WebApplication1.Controllers
                         {
                             vm.Salary = ModelState["Salary"].Value.AttemptedValue;
                         }
+                        vm.FooterData = new FooterViewModel();
+                        vm.FooterData.CompanyName = "MVC Project";//Can be set to dynamic value
+                        vm.FooterData.Year = DateTime.Now.Year.ToString();
+                        vm.UserName = User.Identity.Name; //New Line
                         return View("CreateEmployee", vm); // Day 4 Change - Passing e here
                     }
                 case "Cancel":

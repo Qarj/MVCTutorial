@@ -1,16 +1,15 @@
-﻿
-@using WebApplication1.ViewModels
+﻿@using WebApplication1.ViewModels
 @model CreateEmployeeViewModel
 @{
-    Layout = null;
+    Layout = "~/Views/Shared/MyLayout.cshtml";
 }
 
-<!DOCTYPE html>
+@section TitleSection{
+    CreateEmployee
+}
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>CreateEmployee</title>
+@section HeaderSection{
+    <script src="~/Scripts/Validations.js"></script>
     <script>
     function ResetForm() {
         document.getElementById('TxtFName').value = "";
@@ -18,11 +17,10 @@
         document.getElementById('TxtSalary').value = "";
     }
     </script>
-    <script src="~/Scripts/Validations.js"></script>
-</head>
-<body>
+}
+@section ContentBody{
     <div>
-        <form action="/Employee/SaveEmployee" method="post">
+        <form action="/Employee/SaveEmployee" method="post" id="EmployeeForm">
             <table>
                 <tr>
                     <td>
@@ -66,8 +64,8 @@
                 </tr>
 
                 <tr>
+                    <td colspan="2">
                         @Html.AntiForgeryToken()
-                        <td colspan="2">
                         <input type="submit" name="BtnSubmit" value="Save Employee" onclick="return IsValid();" />
                         <input type="submit" name="BtnSubmit" value="Cancel" />
                         <input type="button" name="BtnReset" value="Reset" onclick="ResetForm();" />
@@ -76,5 +74,4 @@
             </table>
         </form>
     </div>
-</body>
-</html>
+}
