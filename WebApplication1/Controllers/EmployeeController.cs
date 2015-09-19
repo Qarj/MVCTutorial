@@ -23,11 +23,11 @@ namespace WebApplication1.Controllers
             return "Hi, I am not action method";
         }
        
+        [HeaderFooterFilter]
         [Authorize]
         public ActionResult Index()
         {
             EmployeeListViewModel employeeListViewModel = new EmployeeListViewModel();
-            employeeListViewModel.UserName = User.Identity.Name; //New Line
 
             EmployeeBusinessLayer empBal=new EmployeeBusinessLayer();
             List<Employee> employees=empBal.GetEmployees();
@@ -51,23 +51,18 @@ namespace WebApplication1.Controllers
 	        }
             employeeListViewModel.Employees = empViewModels;
             //employeeListViewModel.UserName = "Admin";
-            employeeListViewModel.FooterData = new FooterViewModel();
-            employeeListViewModel.FooterData.CompanyName = "MVC Project"; //Can be set to dyamic value
-            employeeListViewModel.FooterData.Year = DateTime.Now.Year.ToString();
             return View("Index", employeeListViewModel);
         }
 
         [AdminFilter]
+        [HeaderFooterFilter]
         public ActionResult AddNew()
         {
             CreateEmployeeViewModel employeeListViewModel = new CreateEmployeeViewModel();
-            employeeListViewModel.FooterData = new FooterViewModel();
-            employeeListViewModel.FooterData.CompanyName = "MVC Project";//Can be set to dynamic value
-            employeeListViewModel.FooterData.Year = DateTime.Now.Year.ToString();
-            employeeListViewModel.UserName = User.Identity.Name; //New Line
             return View("CreateEmployee", employeeListViewModel);
         }
 
+        [HeaderFooterFilter]
         [ValidateAntiForgeryToken]
         [AdminFilter]
         public ActionResult SaveEmployee(Employee e, string BtnSubmit)
@@ -94,10 +89,6 @@ namespace WebApplication1.Controllers
                         {
                             vm.Salary = ModelState["Salary"].Value.AttemptedValue;
                         }
-                        vm.FooterData = new FooterViewModel();
-                        vm.FooterData.CompanyName = "MVC Project";//Can be set to dynamic value
-                        vm.FooterData.Year = DateTime.Now.Year.ToString();
-                        vm.UserName = User.Identity.Name; //New Line
                         return View("CreateEmployee", vm); // Day 4 Change - Passing e here
                     }
                 case "Cancel":
