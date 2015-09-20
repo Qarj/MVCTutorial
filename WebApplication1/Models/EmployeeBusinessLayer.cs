@@ -38,5 +38,12 @@ namespace WebApplication1.Models
             }
         }
 
+        public void UploadEmployees(List<Employee> employees)
+        {
+            SalesERPDAL salesDal = new SalesERPDAL();
+            salesDal.Employees.AddRange(employees);
+            salesDal.SaveChanges();
+        }
+
     }
 }
