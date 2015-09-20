@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using WebApplication1.Filters;
@@ -13,7 +15,7 @@ using WebApplication1.ViewModels;
 
 namespace WebApplication1.Controllers
 {
-    public class BulkUploadController : Controller
+    public class BulkUploadController : AsyncController
     {
         // GET: BulkUpload
         [HeaderFooterFilter]
@@ -25,9 +27,11 @@ namespace WebApplication1.Controllers
 
 
         [AdminFilter]
-        public ActionResult Upload(FileUploadViewModel model)
+        public async Task<ActionResult> Upload(FileUploadViewModel model)
         {
-            List<Employee> employees = GetEmployees(model);
+            int t1 = Thread.CurrentThread.ManagedThreadId;
+            List<Employee> employees = await Task.Factory.StartNew<List<Employee>> (() => GetEmployees(model));
+            int t2 = Thread.CurrentThread.ManagedThreadId;
             EmployeeBusinessLayer bal = new EmployeeBusinessLayer();
             bal.UploadEmployees(employees);
             return RedirectToAction("Index", "Employee");
