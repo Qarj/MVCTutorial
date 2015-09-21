@@ -23,6 +23,7 @@ namespace WebApplication1.Controllers
             return "Hi, I am not action method";
         }
        
+        [Route("Employee/List")]
         [HeaderFooterFilter]
         [Authorize]
         public ActionResult Index()
