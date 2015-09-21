@@ -5,8 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
-using System.Data.Entity;
-using WebApplication1.DataAccessLayer;
+using BusinessLayer;
 
 namespace WebApplication1
 {
@@ -14,11 +13,12 @@ namespace WebApplication1
     {
         protected void Application_Start()
         {
-            Database.SetInitializer<SalesERPDAL>( null );
+            //Database.SetInitializer<SalesERPDAL>( null ); // Before Day 7
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+            BusinessSettings.SetBusiness();
         }
     }
 }
