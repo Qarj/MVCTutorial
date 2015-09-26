@@ -1,0 +1,20 @@
+﻿@using WebApplication1.ViewModels.SPA
+@model MainViewModel
+
+<!DOCTYPE html>
+
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Employee Single Page Application</title>
+</head>
+<body>
+
+    <div> 
+        @{
+            Html.RenderAction("EmployeeList");
+        }
+    </div>
+</body>
+</html>
