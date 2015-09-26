@@ -11,8 +11,7 @@
     <script src="~/Scripts/jquery-ui-1.11.4.js"></script>
     <title>Employee Single Page Application</title>
     <link href="~/Content/themes/base/all.css" rel="stylesheet" />
-</head>
-<script>
+    <script>
     function OpenAddNew() {
         $.get("/SPA/Main/AddNew").then
             (
@@ -27,13 +26,36 @@
                 }
             );
     }
-</script>
+
+    function OpenBulkUpload() {
+        $.get("/SPA/SpaBulkUpload/Index").then
+            (
+                function (r) {
+                    $("<div id='DivBulkUpload'></div>").html(r).dialog({
+                        width: 'auto', height: 'auto', modal: true, title: "Create New Employee",
+                        close: function () {
+                            $('#DivBulkUpload').remove();
+                        }
+                    });
+                }
+            );
+    }
+
+    </script>
+</head>
+
 <body>
 
-    <div> 
-        @{
-            Html.RenderAction("EmployeeList");
-        }
+    <div style="text-align:right">
+        Hello, @Model.UserName
+        <a href="/Authentication/Logout">Logout</a>
     </div>
+    <hr />
+    <div id="DivOption">
+        @Html.Action("EmployeeList", "Main")
+    </div>
+
+    @Html.Partial("Footer", Model.FooterData)
+
 </body>
 </html>
