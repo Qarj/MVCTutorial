@@ -10,7 +10,7 @@ namespace WebApplication1.Models
     {
         public List<Employee> GetEmployees()
         {
-            SalesERPDAL salesDal = new SalesERPDAL();
+            SalesERPDAL salesDal = new SalesERPDAL(); //Errors on this line when Entity Framework not installed in WebApplication1
             return salesDal.Employees.ToList();
         }
 
