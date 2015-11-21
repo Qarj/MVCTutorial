@@ -1,4 +1,5 @@
 ﻿@model WebApplication1.Models.UserDetails
+@using WebApplication1.Extensions
 
 @{
     Layout = null;
@@ -26,7 +27,7 @@
             @Html.PasswordFor(x => x.Password)
             <br />
 
-            <input type="submit" name="BtnSubmit" value="Login" />
+            @Html.Submit("Login")
 
         }
 
