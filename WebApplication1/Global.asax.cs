@@ -14,6 +14,7 @@ namespace WebApplication1
         protected void Application_Start()
         {
             //Database.SetInitializer<SalesERPDAL>( null ); // Before Day 7
+            BundleTable.EnableOptimizations = true;
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
